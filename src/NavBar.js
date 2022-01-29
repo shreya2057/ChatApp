@@ -3,7 +3,29 @@ import { FaBars } from '@react-icons/all-files/fa/FaBars';
 import { FaFacebookMessenger } from '@react-icons/all-files/fa/FaFacebookMessenger';
 import { FaUserCircle } from '@react-icons/all-files/fa/FaUserCircle';
 
-const NavBar = () => {
+const NavBar = ({ loggedIn }) => {
+
+    var show = "hidden md:block";
+    var showSmallScreen = "md:hidden"
+    var hide = "hidden";
+
+    var hideUserName= "";
+    var hideUserNameSS= "";
+    var hideSignUp= "";
+    var hideSignUpSS= "";
+
+    if(loggedIn === false){
+        hideUserName = hide;
+        hideUserNameSS = hide;
+        hideSignUp = show;
+        hideSignUpSS = showSmallScreen;
+    } else{
+        hideUserName = show;
+        hideUserNameSS = showSmallScreen;
+        hideSignUp = hide;
+        hideSignUpSS = hide;
+    }
+
 
     return ( 
         <nav className="relative flex flex-wrap bg-gray-100 px-2 sm:px-4 py-2.5 rounded">
@@ -32,14 +54,15 @@ const NavBar = () => {
                         <li>
                             <a href="#" className="block py-2 pr-4 pl-3 hover:text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
                         </li>
-                        <li className="hidden md:block">
+                        <li className= { hideUserName }>
                             <button data-collapse-toggle="mobile-menu" type="button" className="pl-3 inline-flex text-sm font-medium rounded-lg hover:bg-transparent border-0 hover:text-blue-700 p-0">
-                                <FaUserCircle className="self-center"/>
+                                <FaUserCircle  className="self-center"/>
                                 <span className="self-center pl-2">Username</span>
                                 
                             </button>
                         </li>
-                        <li className="md:hidden ">
+                        
+                        <li className={ hideUserNameSS }>
                             <a href="#" className="block py-2 pr-4 pl-3 hover:text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                             <button data-collapse-toggle="mobile-menu3" type="button" className="inline-flex">
                                 <FaUserCircle className="self-center"/>
@@ -47,6 +70,22 @@ const NavBar = () => {
                             </button></a>
                             
                         </li>
+
+                        <li className= { hideSignUp }>
+                            <button data-collapse-toggle="mobile-menu" type="button" className="text-center border border-black inline-flex text-sm font-medium rounded hover:bg-transparent  hover:text-blue-700 px-1">
+                               SignUp
+                            </button>
+                        </li>
+
+                        <li className={ hideSignUpSS }>
+                            <a href="#" className="block py-2 pr-4 pl-3 hover:text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                <button data-collapse-toggle="mobile-menu3" type="button" className="inline-flex">
+                                    Sign Up
+                                </button>
+                            </a>
+                            
+                        </li>
+
                     </ul>
                 </div>
             </div>
