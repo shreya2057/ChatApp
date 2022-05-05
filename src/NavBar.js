@@ -1,94 +1,49 @@
-import { useState } from "react";
+import Brand from "./components/Brand";
 import { FaBars } from '@react-icons/all-files/fa/FaBars';
-import { FaFacebookMessenger } from '@react-icons/all-files/fa/FaFacebookMessenger';
+import { GrLogin } from '@react-icons/all-files/gr/GrLogin';
 import { FaUserCircle } from '@react-icons/all-files/fa/FaUserCircle';
 
 const NavBar = ({ loggedIn }) => {
-
-    var show = "hidden md:block";
-    var showSmallScreen = "md:hidden"
-    var hide = "hidden";
-
-    var hideUserName= "";
-    var hideUserNameSS= "";
-    var hideSignUp= "";
-    var hideSignUpSS= "";
-
-    if(loggedIn === false){
-        hideUserName = hide;
-        hideUserNameSS = hide;
-        hideSignUp = show;
-        hideSignUpSS = showSmallScreen;
-    } else{
-        hideUserName = show;
-        hideUserNameSS = showSmallScreen;
-        hideSignUp = hide;
-        hideSignUpSS = hide;
-    }
-
-
     return ( 
-        <nav className="relative flex flex-wrap bg-gray-100 px-2 sm:px-4 py-2.5 rounded">
-            <div className="container flex flex-wrap justify-between items-center mx-auto">
+        <nav className="relative w-full flex flex-wrap justify-between items-center bg-[#DED2A8] px-2 sm:px-4 py-2.5">
 
-                {/* Brand */}
-                <a href="#" className="flex">
-                    {/* Logo */}
-                    <span className="self-center mr-2">
-                        <FaFacebookMessenger/>
-                    </span>
-                    {/* Brand Name */}
-                    <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">ChatApp</span>
-                </a>
+                <Brand/> 
 
-                {/* NavBar Item */}
-
-                <button data-collapse-toggle="mobile-menu" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-gray-200 ">
-                    <FaBars/>
-                </button>
-                <div className=" hidden self-center md:mt-0 w-full mt-4 md:block md:w-auto bg-gray-300 md:bg-gray-100 rounded-lg" id="mobile-menu">
-                    <ul className="flex flex-col md:flex-row md:space-x-9 md:mt-0 md:text-sm md:font-medium">
+                <div className="flex">
+                    <ul className="hidden absolute bg-slate-400 md:flex flex-col md:bg-transparent md:flex-row md:space-x-9 md:mt-0 md:text-sm md:font-medium right-0 justify-items-center self-center w-52 mx-2 mt-36 z-50 md:relative md:w-auto" id="mobile-menu">
                         <li>
-                            <a href="#" className="block py-2 pr-4 pl-3 hover:text-gray-700  hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700  md:p-0 dark:text-gray-400 ">About</a>
+                            <a href="#" className="nav-item">About</a>
                         </li>
+
                         <li>
-                            <a href="#" className="block py-2 pr-4 pl-3 hover:text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-                        </li>
-                        <li className= { hideUserName }>
-                            <button data-collapse-toggle="mobile-menu" type="button" className="pl-3 inline-flex text-sm font-medium rounded-lg hover:bg-transparent border-0 hover:text-blue-700 p-0">
-                                <FaUserCircle  className="self-center"/>
-                                <span className="self-center pl-2">Username</span>
-                                
-                            </button>
-                        </li>
-                        
-                        <li className={ hideUserNameSS }>
-                            <a href="#" className="block py-2 pr-4 pl-3 hover:text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
-                            <button data-collapse-toggle="mobile-menu3" type="button" className="inline-flex">
-                                <FaUserCircle className="self-center"/>
-                                <span className="self-center pl-2 ">Username</span>
-                            </button></a>
-                            
-                        </li>
-
-                        <li className= { hideSignUp }>
-                            <button data-collapse-toggle="mobile-menu" type="button" className="text-center border border-black inline-flex text-sm font-medium rounded hover:bg-transparent  hover:text-blue-700 px-1">
-                               SignUp
-                            </button>
-                        </li>
-
-                        <li className={ hideSignUpSS }>
-                            <a href="#" className="block py-2 pr-4 pl-3 hover:text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
-                                <button data-collapse-toggle="mobile-menu3" type="button" className="inline-flex">
-                                    Sign Up
-                                </button>
-                            </a>
-                            
+                            <a href="#" className="nav-item">Contact</a>
                         </li>
 
                     </ul>
+
+                    {
+                        loggedIn==true && 
+                        <button type="button" className="text-[#004923] text-center inline-flex text-base font-medium md:rounded hover:bg-transparent md:hover:text-white md:px-7 py-1">
+                            <FaUserCircle  className="self-center"/>
+                            <span className="hidden md:block md:self-center md:pl-2">Username</span>
+                        </button>
+                    }
+
+                    {
+                        loggedIn==false && 
+                        <button type="button" className="btn text-[#004923] md:text-center md:inline-flex md:text-base md:font-medium md:rounded  hover:bg-transparent md:bg-white md:hover:bg-white  md:hover:text-white md:px-7 md:ml-5 md:shadow-md">
+                            <GrLogin className="self-center"/>
+                            <span className="hidden md:block md:pl-2">Login</span>
+                        </button>
+                    }
+
+                    <button data-collapse-toggle="mobile-menu" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-gray-200 ">
+                        <FaBars/>
+                    </button>
+
                 </div>
-            </div>
+
+                
         </nav>
      );
 }

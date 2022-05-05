@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
  
+
+.nav-item{
+    @apply block py-2 pr-4 pl-3 text-lg text-[#004923] hover:text-gray-700  hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-white  md:p-0
+}
+
+.btn{
+    @apply block w-full py-2 pr-4 pl-3 hover:bg-gray-50 text-left
+}
